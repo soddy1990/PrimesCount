@@ -28,7 +28,7 @@ int countPrimes(int n) {
             it1 = primes.end();
         else{
             for(it1 = primes.begin(); it1 != primes.end(); it1++){
-                if((*it1) >= (int)sqrt(i)){
+                if((*it1) > (int)sqrt(i)){
                     break;
                 }
             }
@@ -46,6 +46,6 @@ int countPrimes(int n) {
 }
 
 int main(int argc, const char * argv[]) {
-    std::cout << countPrimes(999983);
+    std::cout << countPrimes(1000001);
     return 0;
 }
