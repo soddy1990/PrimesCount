@@ -34,44 +34,27 @@ int countPrimes(int n) {
     mark[1] = false;
     mark[2] = true;
     
-    for(int i = 5; i < n; i += 2){
+    for(int i = 3; i < n; i += 2){
         if(mark[i]){
-            bool isprime = true;
-            
-            vector<int>::iterator it1;
-            it1 = primes.end()-1;
-            if((*it1) <= (int)sqrt(i))
-                it1 = primes.end();
-            else{
-                for(it1 = primes.begin(); it1 != primes.end(); it1++){
-                    if((*it1) > (int)sqrt(i)){
-                        break;
-                    }
-                }
-            }
-            
-            for(it = primes.begin(); it != it1; it++){
-                if(i%(*it) == 0){
-                    isprime = false;
-                    break;
-                }
-            }
-            if(isprime){
-                primes.push_back(i);
-                int j = 2;
-                while(j*i<n){
-                    mark[i*j] = false;
-                    j++;
-                }
+            int j = 2;
+            while(j*i<n){
+                mark[i*j] = false;
+                j++;
             }
         }
     }
+    int count = 0;
     
-    delete [] mark;
-    return (int)primes.size()+1;
+    for(int i = 1; i < n; i++){
+        if(mark[i]){
+            count++;
+        }
+    }
+    
+    return count;
 }
 
 int main(int argc, const char * argv[]) {
-    std::cout << countPrimes(7);
+    std::cout << countPrimes(10);
     return 0;
 }
